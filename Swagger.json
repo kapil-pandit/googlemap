@@ -1,0 +1,230 @@
+
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple NodeJS API of Trade Bridge project to demonstrate Swagger Documentation",
+        "version": "1.0.0",
+        "title": "Trade Bridge Project API",
+        "contact": {
+            "email": "sales@ashapuracommodities.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.ashapuracommodities.com/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "paths" : {
+        "/products" : {
+            "get" : {
+                "summary" : "Get all the products",
+                "description": "Get all the products",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/productsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Application is shutting down on the web server",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/product" : {
+            "post" : {
+                "summary" : "Save the product",
+                "description": "Save the product",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "product object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "product" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/product"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/productsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}" : {
+            "put" : {
+                "summary" : "Update the products",
+                "description": "Update the products",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "product id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "product object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "product" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/product"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/productsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/{id}" : {
+            "delete" : {
+                "summary" : "Delete the product",
+                "description": "Delete the product",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "product id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/productsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "productsResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "product": {
+                    "type": "string"
+                },
+                "shortDescription": {
+                    "type": "string"
+                },
+                "images": {
+                    "type": "array",
+                    "items": {
+                    "type": "string"
+                }
+                },
+                "price":{
+                    "type": "integer"
+                },
+                "sellerState":{
+                    "type": "string"
+                }
+        
+            }
+        },
+        "product": {
+            "type": "object",
+            "properties": {
+                "product": {
+                    "type": "string"
+                },
+                "assignee": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}
