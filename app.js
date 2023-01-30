@@ -36,12 +36,20 @@ app.get('/api/v1/products', (req, res)=>{
 
 <head>
     <title>TradeBridge</title>
+    <style>
+        body {background-color: navy; margin: 300px;}
+        h1   {color: white;}
+        p    {color: red;}
+        h3   {color: greenyellow; }
+    </style>
 </head>
 
 <body>
     <center>
         <div>
+            <h3>**********************************************************</h3>
             <h1>Welcome to TradeBridge Dashboard</h1>
+            <h3>**********************************************************</h3>
         </div>
     </center>
 </body>
